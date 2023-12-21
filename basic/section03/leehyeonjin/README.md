@@ -40,6 +40,7 @@
 3. 준영속(detached) : 영속성 컨텍스트에 저장되었다가 분리된 상태.
 4. 삭제(removed) : 삭제된 상태.
 
+[전체 코드 보기](./jpa-basic/src/main/java/hellojpa/JpaMain.java)
 ```java
 // 객체를 생성한 상태(비영속)
 Member member = new Member();
@@ -82,6 +83,7 @@ transaction.commit();
 
 1차 캐시로 반복 가능한 읽기(Repeatable read) 등급의 트랜잭션 격리 수준을 데이터베이스가 아닌 애플리케이션 차원에서 제공.
 
+[전체 코드 보기](./jpa-basic/src/main/java/hellojpa/JpaMain.java)
 ```java
 // 영속 엔티티의 동일성 보장
 Member a = manager.find(Member.class, 2L);
@@ -98,6 +100,7 @@ System.out.println(a == b); // 동일성 비교 true
 <img width="710" alt="Untitled (7)" src="https://github.com/hgene0929/JPA/assets/90823532/9feb2fad-eb94-41ca-bf8d-fb675c708260">
 <img width="710" alt="Untitled (5)" src="https://github.com/hgene0929/JPA/assets/90823532/eb6bbd2b-3cad-4560-aa60-8e8d3856dccc">
 
+[전체 코드 보기](./jpa-basic/src/main/java/hellojpa/JpaMain.java)
 ```java
 // 쓰기 지연
 Member memberA = new Member();
@@ -121,6 +124,7 @@ transaction.commit();
 > - hibernate의 속성에는 batch size를 설정해야 하는 속성이 존재.
 > - 이것은 JPA가 쓰기 지연을 지원하는 덕분에 영속성 컨텍스트에 쌓인 엔티티들을 한꺼번에 DB에 등록할 수 있는데, 이때 한꺼번에 보낼 수 있는 데이터 수를 지정하기 위함.
 >
+> [전체 코드 보기](./jpa-basic/src/main/resources/META-INF/persistence.xml)
 > ```xml
 > <property name="hibernate.jdbc.batch.size" value="10"/>
 > ```
@@ -138,6 +142,7 @@ JPA는 flush(커밋시점에 호출됨)가 되는 시점에 1차 캐시의 엔�
 
 <img width="695" alt="Untitled (6)" src="https://github.com/hgene0929/JPA/assets/90823532/e192304c-2dae-4173-b3e0-4f67bfec0f22">
 
+[전체 코드 보기](./jpa-basic/src/main/java/hellojpa/JpaMain.java)
 ```java
 // 더티체킹
 Member updateMember = manager.find(Member.class, 100L);
@@ -171,6 +176,7 @@ transaction.commit();
 
 **영속성 컨텍스트를 플러시 하는 방법**
 
+[전체 코드 보기](./jpa-basic/src/main/java/hellojpa/JpaMain.java)
 ```java
 // 영속성 컨텍스트를 플러시 하는 방법
 manager.flush(); // 직접 호출(플러시 수동 호출)
@@ -186,6 +192,7 @@ transaction.commit(); // (플러시 자동 호출)
 </br></br>
 **플러시 모드 옵션**
 
+[전체 코드 보기](./jpa-basic/src/main/java/hellojpa/JpaMain.java)
 ```java
 // 플러시 모드 옵션
 manager.setFlushMode(FlushModeType.AUTO); // 커밋이나 쿼리를 실행할 때 플러시(default)
@@ -202,6 +209,7 @@ manager.setFlushMode(FlushModeType.COMMIT); // 커밋할 때만 플러시
 
 영속성 컨텍스트가 제공하는 기능을 사용할 수 없게 됨.
 
+[전체 코드 보기](./jpa-basic/src/main/java/hellojpa/JpaMain.java)
 ```java
 // 준영속 상태로 만드는 방법
 manager.detach(member); // 특정 엔티티만 준영속 상태로 전환
