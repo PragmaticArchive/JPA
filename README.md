@@ -5,3 +5,7 @@
 ### [SECTION05](./basic/section05/README.md)
 ### [SECTION06](./basic/section06/README.md)
 ### [SECTION07](./basic/section07/README.md)
+### [SECTION08](./basic/section08/README.md)
+### [SECTION09](./basic/section09/README.md)
+### [SECTION10](./basic/section10/README.md)
+### [SECTION11](./basic/section11/README.md)
